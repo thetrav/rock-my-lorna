@@ -10,19 +10,21 @@
       <link rel="shortcut icon" href="images/favicon.ico">
    </head>
 	<body>
-		<div id="canvas">
-         <div id="cursor" style="display:none"><g:img file="lorna_rockin.gif"/></div>
-         <div id="background"><g:img file="select.png" id="background-img"/></div>
-		</div>
       <g:uploadForm controller="rock" action="lorna">
-         <div>
-            <input type="file" name="background-file" id="background-file" >
-            <button id="update-button" type="button">update</button>
+         <div id="canvas" style="display:none">
+            <span class="instructions">Drag Lorna To Position then: </span> <input type="submit" id="submit-button" style="display:none" value="ROCK MY LORNA!" >
+            <div>
+               <div id="cursor"><g:img file="lorna_rockin.gif"/></div>
+               <div id="background"><g:img file="select.png" id="background-img"/></div>
+            </div>
          </div>
-         <div>
+         <div class="file-selector">
+            <input type="file" name="background-file" id="background-file" >
+            <span id="file-label">Select A File</span>
+         </div>
+         <div style="display:none">
             <input name="x" id="x" class="coord" value="0"> <label for="x" >left</label>
             <input name="y" id="y" class="coord" value="0"> <label for="y" >top</label>
-            <input type="submit" value="ROCK MY LORNA!" >
          </div>
       </g:uploadForm>
 

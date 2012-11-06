@@ -8,14 +8,14 @@ $(function() {
       }
    });
 
-   $('#update-button').click(function(e) {
-//      e.preventDefault();
-      console.log("cliked");
+   $('#background-file').change(function() {
       var file = $('#background-file')[0].files[0];
-      if(file){
+      if(file) {
         var blobURLref = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
         $('#background-img').attr('src', blobURLref);
-        $('#cursor').css("display", "block");
+        $('#canvas').css("display", "block");
+        $('#submit-button').css("display", "inline-block");
+        $('#file-label').text("Change Image");
       }
    });
 });

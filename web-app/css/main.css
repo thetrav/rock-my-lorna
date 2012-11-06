@@ -1,3 +1,10 @@
+body, #submit-button {
+   color: #333333;
+   font-family: Impact, Charcoal, sans-serif;
+   font-size: 40px;
+}
+
+
 #canvas, #background {
    position:relative;
    z-index: 10;
@@ -9,4 +16,26 @@
    top:1;
    left:1;
    z-index: 20;
+}
+
+.file-selector, #submit-button {
+    clear: both;
+    display: inline-block;
+    /*float: left;*/
+    overflow: hidden;
+    position: relative;
+    background-color: #ccc;
+    color: #222;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #555;
+}
+
+#background-file {
+    opacity: 0;
+    font-size:42px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
 }
