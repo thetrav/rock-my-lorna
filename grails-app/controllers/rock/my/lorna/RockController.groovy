@@ -26,6 +26,7 @@ class RockController implements ResourceLoaderAware{
       try {
          def x = Integer.parseInt(params.x)
          def y = Integer.parseInt(params.y)
+         def scale = Double.parseDouble(params.scale)
          def img = request.getFile('background-file')
          def id = UUID.randomUUID().toString()
          List<BufferedImage> lorna = [1,2,3,2].collect { ImageIO.read(resourceLoader.getResource("images/lorna_${it}.png").inputStream) }
@@ -33,7 +34,11 @@ class RockController implements ResourceLoaderAware{
 
          List<BufferedImage> i = lorna.collect {
             def frame = deepCopy(background)
-            frame.graphics.drawImage(it, x, y, null)
+            Graphics2D g = frame.graphics
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC)
+            def xform = AffineTransform.getTranslateInstance(x,y)
+            xform.scale(scale, scale)
+            g.drawImage(it, xform, null)
             scaleTo(frame, 500)
          }
 
