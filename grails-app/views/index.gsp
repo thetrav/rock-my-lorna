@@ -12,14 +12,14 @@
 	<body>
       <g:uploadForm controller="rock" action="lorna">
          <div id="canvas" style="display:none">
-            <span class="instructions">Drag Lorna To Position then: </span> <input type="submit" id="submit-button" style="display:none" value="ROCK MY LORNA!" >
+            <span class="instructions">Drag Lorna To Position then: </span> <input type="submit" id="submit-button" class="button" style="display:none" value="ROCK MY LORNA!" >
             <div>
                <div id="cursor"><g:img file="lorna_rockin.gif"/></div>
                <div id="background"><g:img file="select.png" id="background-img"/></div>
             </div>
          </div>
-         <div class="file-selector">
-            <input type="file" name="background-file" id="background-file" >
+         <div class="file-selector button">
+            <input type="file" name="background-file" id="background-file">
             <span id="file-label">Select A File</span>
          </div>
          <div style="display:none">

@@ -61,13 +61,29 @@ grails.hibernate.cache.queries = true
 
 // set per-environment serverURL stem for creating absolute links
 environments {
-    development {
-        grails.logging.jul.usebridge = true
-    }
-    production {
-        grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
-    }
+   development {
+      grails.logging.jul.usebridge = true
+
+      mongo {
+         server = "ds041347.mongolab.com"
+         port = 41347
+         database = "rockthelorna"
+         username = "rockmylorna"
+         password = "lornamyrock"
+      }
+   }
+   production {
+      grails.logging.jul.usebridge = false
+      // TODO: grails.serverURL = "http://www.changeme.com"
+
+      mongo {
+         server = "ds041347.mongolab.com"
+         port = 41347
+         database = "rockthelorna"
+         username = "rockmylorna"
+         password = "lornamyrock"
+      }
+   }
 }
 
 // log4j configuration

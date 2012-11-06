@@ -7,16 +7,27 @@ import java.awt.image.BufferedImage
 import java.awt.geom.AffineTransform
 import java.awt.RenderingHints
 import java.awt.Graphics2D
+import com.mongodb.MongoURI
+import com.mongodb.DB
+import com.gmongo.GMongo
 
 class RockController implements ResourceLoaderAware{
 
    ResourceLoader resourceLoader
+   def grailsApplication
 
    def lorna() {
+      def config = grailsApplication.config.mongo
+      def uri = "mongodb://${config.username}:${config.password}@${config.server}:${config.port}/${config.database}"
+      GMongo mongo = new GMongo(new MongoURI(uri))
+      DB db = mongo.getDB(config.database)
+      db.authenticate(config.username, config.password.toCharArray())
+
       try {
          def x = Integer.parseInt(params.x)
          def y = Integer.parseInt(params.y)
          def img = request.getFile('background-file')
+         def id = UUID.randomUUID().toString()
          List<BufferedImage> lorna = [1,2,3,2].collect { ImageIO.read(resourceLoader.getResource("images/lorna_${it}.png").inputStream) }
          BufferedImage background = ImageIO.read(img.inputStream)
 
@@ -26,29 +37,43 @@ class RockController implements ResourceLoaderAware{
             scaleTo(frame, 500)
          }
 
-         String filename = "lorna-rocking-${img.originalFilename.replaceFirst(~/\.[^\.]+$/, '')}.gif"
+         String filename = "lorna-rocking-${img.originalFilename.replaceFirst(~/\.[^\.]+$/, '')}"
 
-         response.contentType = 'application/octet-stream'
-         response.setHeader 'Content-disposition', "attachment; filename=\"$filename\""
+         File temp = File.createTempFile(filename, ".gif")
 
          AnimatedGifEncoder encoder = new AnimatedGifEncoder()
-         encoder.start(response.outputStream)
-         encoder.repeat = 0
+         FileOutputStream tempOut = new FileOutputStream(temp)
+         try {
+            encoder.start(tempOut)
+            encoder.repeat = 0
 
-         encoder.addFrame(i[0])
-         encoder.delay = 100
-         encoder.addFrame(i[1])
-         encoder.delay = 100
-         encoder.addFrame(i[2])
-         encoder.delay = 200
-         encoder.addFrame(i[3])
-         encoder.delay = 100
+            encoder.addFrame(i[0])
+            encoder.delay = 100
+            encoder.addFrame(i[1])
+            encoder.delay = 100
+            encoder.addFrame(i[2])
+            encoder.delay = 200
+            encoder.addFrame(i[3])
+            encoder.delay = 100
 
-         encoder.finish()
-         response.outputStream.flush()
-      }catch (t) {
+            encoder.finish()
+         } finally {
+            tempOut.close()
+         }
+
+         db.images.insert([
+            guid:id,
+            x:x,
+            y:y,
+            name:filename,
+            imageBytes:temp.bytes
+         ])
+         mongo.close()
+         render(view: "lorna", model:  [lorna:"/lorna/view/${id}.gif"])
+      } catch (t) {
          println("something went wrong ${t}")
          t.printStackTrace()
+         throw t
       }
    }
 

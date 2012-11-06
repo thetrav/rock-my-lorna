@@ -20,6 +20,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
+       compile 'com.gmongo:gmongo:1.0'
     }
 
     plugins {
