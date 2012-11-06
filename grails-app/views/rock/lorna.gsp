@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
    <head>
-     <title>Look at her go!</title>
+     <title>Lorna rocking it!</title>
       <link href="/css/main.css" rel="stylesheet">
    </head>
    <body>
