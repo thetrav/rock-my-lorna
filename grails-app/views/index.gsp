@@ -11,8 +11,8 @@
    </head>
 	<body>
 		<div id="canvas">
-         <div id="cursor"><g:img file="spinner.gif" width="50" height="50"/></div>
-         <div id="background"><g:img file="grails_logo.png" id="background-img" width="800" height="600"/></div>
+         <div id="cursor" style="display:none"><g:img file="lorna_rockin.gif"/></div>
+         <div id="background"><g:img file="select.png" id="background-img"/></div>
 		</div>
       <g:uploadForm controller="rock" action="lorna">
          <div>

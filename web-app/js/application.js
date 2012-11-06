@@ -15,6 +15,7 @@ $(function() {
       if(file){
         var blobURLref = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
         $('#background-img').attr('src', blobURLref);
+        $('#cursor').css("display", "block");
       }
    });
 });
