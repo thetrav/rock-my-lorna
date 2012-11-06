@@ -1,8 +1,7 @@
 class UrlMappings {
 
 	static mappings = {
-
-      "/lorna/view/$fileName" (controller: "data", action: "view")
+      "/image/$fileName" (controller: "data", action: "view")
 
 		"/$controller/$action?/$id?"{
 			constraints {

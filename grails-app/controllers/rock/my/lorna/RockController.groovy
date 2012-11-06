@@ -69,12 +69,16 @@ class RockController implements ResourceLoaderAware{
             imageBytes:temp.bytes
          ])
          mongo.close()
-         render(view: "lorna", model:  [lorna:"${id}.gif"])
+         redirect(action:"view", params: [id:id])
       } catch (t) {
          println("something went wrong ${t}")
          t.printStackTrace()
          throw t
       }
+   }
+
+   def view() {
+      render(view: "lorna", model:  [lorna:params.id])
    }
 
    static BufferedImage scaleTo(BufferedImage src, int max) {

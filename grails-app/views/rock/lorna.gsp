@@ -2,11 +2,12 @@
 <html>
    <head>
      <title>Look at her go!</title>
+      <link href="/css/main.css" rel="stylesheet">
    </head>
    <body>
       <h1>LORNA ROCKING IT!!!</h1>
-      <g:img dir="/lorna/view/" file="${lorna}" alt="lorna rocking it"/>
-   <div class="fb-like" data-href="http://rock-my-lorna.cloudfoundry.com/lorna/view/${lorna}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+      <g:img dir="/image/" file="${lorna}.gif" alt="lorna rocking it"/>
+   <div class="fb-like" data-href="http://rock-my-lorna.cloudfoundry.com/rock/view/${lorna}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
    <div id="fb-root"></div>
    <script>(function(d, s, id) {
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -16,5 +17,9 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));</script>
 
-   </body>
+   <div class="button">
+      <a href="/" >Go Again!</a>
+   </div>
+
+  </body>
 </html>
