@@ -21,7 +21,7 @@
          </div>
          <div class="file-selector button">
             <input type="file" name="background-file" id="background-file">
-            <span id="file-label">Select A File</span>
+            <span id="file-label">Select An Image</span>
          </div>
          <div style="display:none">
             <input name="x" id="x" class="coord" value="0"> <label for="x" >left</label>
