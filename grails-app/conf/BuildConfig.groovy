@@ -23,6 +23,7 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        build ":tomcat:$grailsVersion"
+       compile ":cloud-foundry:1.2.3"
+       build ":tomcat:$grailsVersion"
     }
 }
