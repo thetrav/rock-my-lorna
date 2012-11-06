@@ -2,7 +2,7 @@
 <html>
    <head>
      <title>Lorna rocking it!</title>
-      <link href="/css/main.css" rel="stylesheet">
+      <link href="${createLinkTo(dir:'css',file:'main.css')}" rel="stylesheet">
    </head>
    <body>
       <h1>LORNA ROCKING IT!!!</h1>
@@ -18,7 +18,7 @@
    }(document, 'script', 'facebook-jssdk'));</script>
 
    <div class="button">
-      <a href="/" >Go Again!</a>
+      <a href="${createLinkTo(dir:'/',file:'')}" >Go Again!</a>
    </div>
 
   </body>

@@ -6,25 +6,32 @@ import com.mongodb.DB
 
 
 class DataController {
-   def grailsApplication
+   def mongoService
+
+   def simpleRemoteServiceCache
+
+   def cached(guid) {
+      def data
+      if (simpleRemoteServiceCache.get(guid)) {
+        data = simpleRemoteServiceCache.get(guid).getValue()
+      } else {
+        data = mongoService.db.images.findOne(guid:guid)
+        simpleRemoteServiceCache.put( new net.sf.ehcache.Element(guid, data) )
+      }
+      data
+   }
+
 
    def view() {
-      def config = grailsApplication.config.mongo
-      def uri = "mongodb://${config.username}:${config.password}@${config.server}:${config.port}/${config.database}"
-      GMongo mongo = new GMongo(new MongoURI(uri))
-      try {
-         DB db = mongo.getDB(config.database)
-         db.authenticate(config.username, config.password.toCharArray())
-         def guid = params.fileName.replaceFirst(~/\.[^\.]+$/, '')
+      def guid = params.fileName.replaceFirst(~/\.[^\.]+$/, '')
 
-         def data = db.images.findOne(guid:guid)
+      def data = cached(guid)
 
-         response.contentType = 'application/octet-stream'
-         response.setHeader 'Content-disposition', "attachment; filename=\"${data.name}.gif\""
+      response.contentType = 'application/octet-stream'
+      response.setHeader 'Content-disposition', "attachment; filename=\"${data.name}.gif\""
 
-         response.outputStream.write(data.imageBytes)
+      response.outputStream.write(data.imageBytes)
 
-         response.outputStream.flush()
-      } finally { mongo.close() }
+      response.outputStream.flush()
    }
 }
