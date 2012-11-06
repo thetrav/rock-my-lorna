@@ -1,6 +1,8 @@
 $(function() {
    console.log("onload");
    $("#cursor").draggable({
+      cursor: "crosshair",
+//      cursorAt: { top: 0, left: 0 },
       containment: "parent",
       stop: function(e, ui) {
          $("#x").val(ui.position.left);
@@ -13,6 +15,7 @@ $(function() {
       if(file) {
         var blobURLref = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
         $('#background-img').attr('src', blobURLref);
+        $('#submit-block').css("display", "block");
         $('#canvas').css("display", "block");
         $('#submit-button').css("display", "inline-block");
         $('#file-label').text("Change Image");

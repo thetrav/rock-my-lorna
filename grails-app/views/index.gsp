@@ -4,19 +4,20 @@
 		<title>Rock My Lorna</title>
 
       <link href="css/jquery-ui-1.9.1.custom.min.css" rel="stylesheet">
-      <link href="css/bootstrap-responsive.css" rel="stylesheet">
       <link href="css/main.css" rel="stylesheet">
 
       <link rel="shortcut icon" href="images/favicon.ico">
    </head>
 	<body>
+
       <g:uploadForm controller="rock" action="lorna">
-         <div id="canvas" style="display:none">
+         <div id="submit-block" style="display:none">
             <span class="instructions">Drag Lorna To Position then: </span> <input type="submit" id="submit-button" class="button" style="display:none" value="ROCK MY LORNA!" >
-            <div>
-               <div id="cursor"><g:img file="lorna_rockin.gif"/></div>
-               <div id="background"><g:img file="select.png" id="background-img"/></div>
-            </div>
+         </div>
+
+         <div id="canvas" style="display:none">
+            <div id="cursor"><g:img file="lorna_rockin.gif"/></div>
+            <div id="background"><g:img file="select.png" id="background-img"/></div>
          </div>
          <div class="file-selector button">
             <input type="file" name="background-file" id="background-file">
@@ -30,7 +31,6 @@
 
       <script src="js/jquery-1.8.2.min.js"></script>
       <script src="js/jquery-ui-1.9.1.custom.min.js"></script>
-      <script src="js/underscore-min.js"></script>
       <script src="js/bootstrap.js"></script>
       <script src="js/application.js"></script>
 	</body>
