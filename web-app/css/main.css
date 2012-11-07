@@ -41,6 +41,12 @@ body, #submit-button {
     cursor: pointer;
 }
 
+.gallery li {
+   display: inline-block;
+   list-style: none;
+   margin: 10px;
+}
+
 .button a,.button a:hover,.button a:active {
    text-decoration:none;
    color:inherit;

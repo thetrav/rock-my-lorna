@@ -2,6 +2,7 @@ class UrlMappings {
 
 	static mappings = {
       "/image/$fileName" (controller: "data", action: "view")
+      "/gallery" (controller: "data", action: "index")
 
 		"/$controller/$action?/$id?"{
 			constraints {

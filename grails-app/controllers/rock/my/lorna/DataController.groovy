@@ -34,4 +34,9 @@ class DataController {
 
       response.outputStream.flush()
    }
+
+   def index() {
+      def guids = mongoService.db.images.find([:], [guid:1]).collect {it.guid}
+      render(view:"/rock/gallery", model: [guids:guids.reverse()])
+   }
 }
